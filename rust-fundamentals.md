@@ -36,3 +36,52 @@ fn main() {
 Estando en la carpeta del proyecto y con el comando `cargo run`, deberías visualizar Hello, world! en la terminal de comandos.
 
 > Ok, end of Hello, World! Rust... now we can start with the fundamentals...
+
+## Variables de Rust y cómo mostrarlas en pantalla
+
+Como todo lenguaje de programación, Rust posee diversos tipos de variables para almacenar números, cadenas de caracteres, etc.
+
+### Declaración de variables en Rust
+
+Rust es un lenguaje **fuertemente tipado**, lo que significa que tienes que hacer explícito el tipo de las variables y este no pueden cambiar en tiempo de ejecución.
+
+Como las variables en rust son **inmutables** (no pueden modificarse) tanto en su valor como es su tipo, para hacer una variable mutable se debe agregar la palabra reservada **mut** y el tipo de dato se debe mantener.
+
+```Rust
+    let [mut (if we want a mutable variable)] <VARIABLE_NAME>: <DATA_TYPE> = <VALUE> 
+```
+
+### Variables numericas en Rust
+
+- Enteros con signo: `i8`, `i16`, `i32`, `i64`, `i128` and `isize` (pointer size)
+- Enteros sin signo: `u8`, `u16`, `u32`, `u64`, `u128` and `usize` (pointer size)
+- Decimales: `f32`, `f64`
+
+### Variables del tipo string en Rust
+
+Para el guardado de variables del tipo cadenas de texto, el tipado se realiza con la palabra reservada `&str`.
+
+### println!() - Mostrar variables y/o mensajes en pantalla
+
+Para utilizar y mostrar por pantalla dichas variables, utiliza el comando `println!()` e ingresa el texto que deseas mostrar.
+
+Las variables que le pases después de la primera coma, reemplazarán los `{}`, denominados “placeholders”, y formateará el texto en el orden que hayas establecido el ingreso de cada valor.
+
+### Ejemplo
+
+```Rust
+fn main() {
+    let age: i16 = 24;
+    let name: &str = "Peter Parker";
+    let mut year: u16 = 2022;
+
+    year += 1;
+
+    println!("Hello, world!");
+    println!("My age is {} and my name is {}", age, name);
+    println!("Next year will be {}", year);
+}
+
+```
+
+Podemos correr nuestro proyecto de Rust con el comando `cargo run` en la terminal estando en la carpeta del archivo [main.rs](hello-world/src/main.rs), para este caso, y visualizar los mensajes y los valores de las variables desde la terminal de línea de comandos.
