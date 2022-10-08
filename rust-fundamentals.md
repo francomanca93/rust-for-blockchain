@@ -1,3 +1,17 @@
+# Fundamentos de Rust
+
+- [Fundamentos de Rust](#fundamentos-de-rust)
+  - [Instalando Rust (MacOS o Linux)](#instalando-rust-macos-o-linux)
+  - [Hello World Rust](#hello-world-rust)
+  - [Variables de Rust y cómo mostrarlas en pantalla](#variables-de-rust-y-cómo-mostrarlas-en-pantalla)
+    - [Declaración de variables en Rust](#declaración-de-variables-en-rust)
+    - [Variables numericas en Rust](#variables-numericas-en-rust)
+    - [Variables del tipo string en Rust](#variables-del-tipo-string-en-rust)
+    - [println!() - Mostrar variables y/o mensajes en pantalla](#println---mostrar-variables-yo-mensajes-en-pantalla)
+    - [Ejemplo](#ejemplo)
+  - [Recibiendo datos del usuario](#recibiendo-datos-del-usuario)
+    - [Cambiando el tipo de dato en Rust](#cambiando-el-tipo-de-dato-en-rust)
+
 ## Instalando Rust (MacOS o Linux)
 
 En el siguiente link se encuentra la documentación oficial para la instalación de Rust: [Install Rust - Official](https://www.rust-lang.org/tools/install)
@@ -85,3 +99,50 @@ fn main() {
 ```
 
 Podemos correr nuestro proyecto de Rust con el comando `cargo run` en la terminal estando en la carpeta del archivo [main.rs](hello-world/src/main.rs), para este caso, y visualizar los mensajes y los valores de las variables desde la terminal de línea de comandos.
+
+## Recibiendo datos del usuario
+
+Recibir datos de un usuario con tu aplicación es una de las bases de cualquier lenguaje de programación. Podemos hacer esto con Rust desde la interfaz de línea de comandos.
+
+```Rust
+fn main() {
+    println!("Ingrese su nombre:");
+    let mut nombre: String = String::new();
+    std::io::stdin().read_line(&mut nombre).unwrap();
+    nombre = nombre.trim().to_string();
+
+    println!("Bienvenido o bienvenida: {}", nombre);
+}
+```
+
+- `println!()`: Solo muestran mensaje en pantalla.
+- `let mut nombre: String = String::new();`: Declaramos una variable del tipo string donde almacenaremos el nombre. 
+  - Podemos declarar un string con `String` o con `&str`. Las diferencias son mínimas:
+    - `String`: Te permite manipular el texto, hacer substrings o splits, pero ocupa algo más de espacio en memoria. Es un objeto en POO.
+    - `&str`: Es texto plano sin otra funcionalidad. Hace referencia al contenido de un tipo de dato nativo y el contenido de una posición de memoria.
+
+- `std::io::stdin().read_line(&mut nombre).unwrap();`:
+  - `std` es una librería de Rust para acceder al sistema operativo.
+  - `io` significa inputs/outputs, `println!()` lo utiliza internamente para mostrar mensajes por consola, aquí lo utilizaremos para ingresar datos por la misma.
+  - `stdin()` permite traer información.
+  - `read_line()` indica que esa información será recibida por consola. `&mut nombre` es la variable donde guardaremos el dato ingresado por el usuario (Utiliza mut en las variables para indicar que la misma cambiará de valor).
+  - `unwrap()`, nos ayuda con el manejo de errores.
+
+- `nombre = nombre.trim().to_string();`: Aquí solo formateamos el texto para eliminar saltos de línea y espacios en blanco.
+
+### Cambiando el tipo de dato en Rust
+
+Por defecto, todos los datos que ingresa el usuario por consola son del tipo `String`. Puede ocurrir que necesites números enteros y para esto tienes que convertir el tipo de datos de la siguiente manera:
+
+```Rust
+fn main() {
+    println!("Ingrese su edad:");
+    let mut edad: String = String::new();
+    std::io::stdin().read_line(&mut edad).unwrap();
+    let edad_int: u8 = edad.trim().parse().unwrap();
+
+    println!("La edad es: {}", edad_int);
+}
+```
+
+- `let edad_int: u8 = edad.trim().parse().unwrap();` donde creamos una nueva variable donde guardaremos un número del tipo `u8`. De esta forma podrás manipular ese dato y realizar cualquier operación matemática.
