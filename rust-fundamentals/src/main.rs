@@ -50,12 +50,35 @@ fn matrix_conditionals(){
     } else {
         println!("BOOM!")
     }
+}
 
+fn ciclo_loop(){
+    let number_1: i32 = 123;
+    let number_2: i32 = 321;
+
+    let sum: i32 = number_1 + number_2;
+
+    loop {
+        println!("Please enter the sum of {} and {}: ", number_1, number_2);
+        
+        let mut user_sum:String = String::new();
+        std::io::stdin().read_line(&mut user_sum).unwrap();
+    
+        let user_sum_int: i32 = user_sum.trim().parse().unwrap();
+    
+        if user_sum_int == sum {
+            println!("You're right, the answer is {}.", sum);
+            break;
+        } else {
+            println!("You're wrong, your answer was {}", user_sum_int);
+        }
+    }
 
 }
 
 fn main() {
     //take_data_from_user()
     //conditionals()
-    matrix_conditionals()
+    //matrix_conditionals()
+    ciclo_loop()
 }

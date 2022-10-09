@@ -12,6 +12,7 @@
   - [Recibiendo datos del usuario](#recibiendo-datos-del-usuario)
     - [Cambiando el tipo de dato en Rust](#cambiando-el-tipo-de-dato-en-rust)
   - [Condicionales](#condicionales)
+  - [Ciclo Loop](#ciclo-loop)
 
 ## Instalando Rust (MacOS o Linux)
 
@@ -170,3 +171,29 @@ La condición de un `if` puede ser de varios tipos:
 - Validar la igualdad de datos con `==`
 - verificar si un número es mayor, menor o igual con `>`, `<`, `>=` y `<=`.
 - Agrupar condiciones con `&&` para un AND lógico o un `||` para un OR lógico.
+
+## Ciclo Loop
+
+Ejemplos en: [ciclo loop - rust-fundamentals/src/main.rs](rust-fundamentals/src/main.rs)
+
+Los ciclos iterativos en Rust realmente rompen con el paradigma de sintaxis de programación en comparación con otros lenguajes.
+
+```Rust
+
+fn main() {
+    loop {
+        println!("Ingrese 123 para detener el loop:");
+        let mut number: String = String::new();
+        std::io::stdin().read_line(&mut number).unwrap();
+        let number_int: i32 = number.trim().parse().unwrap();
+
+        if number_int == 123 {
+            break;
+        }
+    }
+}
+```
+
+La palabra reservada `loop` crear un ciclo de iteraciones del código fuente en su interior. El ciclo se repetirá hasta encontrar un `break`.
+
+`loop` es una manera diferente de crear un ciclo iterativo. Es crucial tener cuidado en nuestros algoritmos y que sea bien probado para no entrar en bucles infinitos, y así asegurar que el mismo tenga un punto de finalización.
