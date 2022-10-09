@@ -11,6 +11,7 @@
     - [Ejemplo](#ejemplo)
   - [Recibiendo datos del usuario](#recibiendo-datos-del-usuario)
     - [Cambiando el tipo de dato en Rust](#cambiando-el-tipo-de-dato-en-rust)
+  - [Condicionales](#condicionales)
 
 ## Instalando Rust (MacOS o Linux)
 
@@ -146,3 +147,26 @@ fn main() {
 ```
 
 - `let edad_int: u8 = edad.trim().parse().unwrap();` donde creamos una nueva variable donde guardaremos un número del tipo `u8`. De esta forma podrás manipular ese dato y realizar cualquier operación matemática.
+
+## Condicionales
+
+Ejemplos en: [Conditionals - rust-fundamentals/src/main.rs](rust-fundamentals/src/main.rs)
+
+La sintaxis de un `if/else` en Rust es:
+
+```Rust
+fn main() {
+    let edad: i8 = 20;
+    if edad >= 18 {
+        println!("Eres mayor de edad");
+    } else {
+        println!("Eres menor de edad");
+    }
+}
+```
+
+La condición de un `if` puede ser de varios tipos:
+
+- Validar la igualdad de datos con `==`
+- verificar si un número es mayor, menor o igual con `>`, `<`, `>=` y `<=`.
+- Agrupar condiciones con `&&` para un AND lógico o un `||` para un OR lógico.
