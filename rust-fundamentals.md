@@ -18,6 +18,7 @@
     - [Instalación de una dependencia](#instalación-de-una-dependencia)
     - [Utilización de una dependencia](#utilización-de-una-dependencia)
     - [Consejos sobre utilización de dependencias de terceros](#consejos-sobre-utilización-de-dependencias-de-terceros)
+  - [Manejo de errores en Rust - unwrap()](#manejo-de-errores-en-rust---unwrap)
 
 # Introduccion
 
@@ -222,7 +223,7 @@ La palabra reservada `loop` crear un ciclo de iteraciones del código fuente en 
 # Primer proyecto: Calculadora cientifica
 
 - Cargo y manejo de paquetes.
-- Obtener datos del usuario - unwrap()
+- Manejo de errores en Rust - unwrap()
 - Operaciones matemáticas básicas de Rust.
 - Algo de REGEX...
 
@@ -269,3 +270,19 @@ Cargo genera un nuevo archivo en la raíz de tu proyecto llamado `Cargo.lock`. E
 - Antes de descargar cualquier dependencia, chequea quién la desarrolla, qué cantidad de descargar por semana posee, revisar cuándo recibió su última actualización en el repositorio oficial de la misma (normalmente en GitHub).
 - Es importante seleccionar buenas dependencias sin bugs y que no generen problemas de seguridad en tu aplicación.
 - Cargo es un poderoso gestor de dependencias, pero es más que la instalación de librerías de terceros que necesites. Tiene múltiples usos, podemos explorarlo con el comando `cargo --help` para visualizar por consola todas sus posibilidades.
+
+## Manejo de errores en Rust - unwrap()
+
+- En Rust, **no existen los valores nulos**. Rust busca la seguridad y la robustez en el software con esto no permite los errores en tiempo de ejecución producto del valor nulo de una variable.
+
+- En Rust **todo es un tipo de dato**. El tipo de dato [Option](https://doc.rust-lang.org/std/option/), contiene dentro el tipo de dato que puede existir o no como un número entero o un string. Devolverá el mismo, si existe, o nos devolverá en caso contrario un [None](https://doc.rust-lang.org/std/option/enum.Option.html#variant.None) que indica su no existencia, pero que no es lo mismo que `null`, ya que es un tipo de dato, y `null` un espacio en memoria totalmente vacio.
+
+- Una operación en Rust devuelve el tipo de dato [Result](https://doc.rust-lang.org/std/result/), donde:
+  - T es el valor de la operación exitosa
+  - E un posible error.
+
+- En Rust, los errores también son un tipo de dato. Para manejarlos, utilizamos .unwrap(). el mismo nos devuelve el valor T que necesitamos si este existe o E en caso de producirse un error.
+
+> Nota: En Rust no existe la sentencia `try/catch` para la captura de errores como en otros lenguajes.
+
+Si no implementamos `.unwrap()`, podemos obtener un **warning** por consola que nos advierte de la posibilidad del error en una operación. De esta manera, gracias a este tipo de dato que contiene el error, podemos actuar en consecuencia a partir de identificar el tipo de error. Similar a un traceback en Python.
