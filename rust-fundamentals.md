@@ -1,8 +1,8 @@
-# Fundamentos de Rust
 
-- [Fundamentos de Rust](#fundamentos-de-rust)
+- [Introduccion](#introduccion)
   - [Instalando Rust (MacOS o Linux)](#instalando-rust-macos-o-linux)
   - [Hello World Rust](#hello-world-rust)
+- [Bases de Rust](#bases-de-rust)
   - [Variables de Rust y cómo mostrarlas en pantalla](#variables-de-rust-y-cómo-mostrarlas-en-pantalla)
     - [Declaración de variables en Rust](#declaración-de-variables-en-rust)
     - [Variables numericas en Rust](#variables-numericas-en-rust)
@@ -13,6 +13,16 @@
     - [Cambiando el tipo de dato en Rust](#cambiando-el-tipo-de-dato-en-rust)
   - [Condicionales](#condicionales)
   - [Ciclo Loop](#ciclo-loop)
+- [Primer proyecto: Calculadora cientifica](#primer-proyecto-calculadora-cientifica)
+  - [Cargo, el geston de dependencias de Rust](#cargo-el-geston-de-dependencias-de-rust)
+    - [Instalación de una dependencia](#instalación-de-una-dependencia)
+    - [Utilización de una dependencia](#utilización-de-una-dependencia)
+    - [Consejos sobre utilización de dependencias de terceros](#consejos-sobre-utilización-de-dependencias-de-terceros)
+
+# Introduccion
+
+- Intalacion de Rust
+- Hello World! Rust...
 
 ## Instalando Rust (MacOS o Linux)
 
@@ -52,6 +62,17 @@ fn main() {
 Estando en la carpeta del proyecto y con el comando `cargo run`, deberías visualizar Hello, world! en la terminal de comandos.
 
 > Ok, end of Hello, World! Rust... now we can start with the fundamentals...
+
+# Bases de Rust
+
+Estas son las herramientas básicas de cualquier lenguaje de programación para desarrollar software:
+
+- Declaración de variables y sus tipos
+- Captura de inputs del usuario
+- Condicionantes
+- Ciclos iterativos
+
+Con estos conceptos tendremos lo esencial para programar aplicaciones básicas en Rust.
 
 ## Variables de Rust y cómo mostrarlas en pantalla
 
@@ -197,3 +218,54 @@ fn main() {
 La palabra reservada `loop` crear un ciclo de iteraciones del código fuente en su interior. El ciclo se repetirá hasta encontrar un `break`.
 
 `loop` es una manera diferente de crear un ciclo iterativo. Es crucial tener cuidado en nuestros algoritmos y que sea bien probado para no entrar en bucles infinitos, y así asegurar que el mismo tenga un punto de finalización.
+
+# Primer proyecto: Calculadora cientifica
+
+- Cargo y manejo de paquetes.
+- Obtener datos del usuario - unwrap()
+- Operaciones matemáticas básicas de Rust.
+- Algo de REGEX...
+
+## Cargo, el geston de dependencias de Rust
+
+Todo lenguaje de programación tiene su gestor de dependencias. `Composer` para PHP, `NPM` o `Yarn` para Javascript, `Pip` para Python, `Maven` para Java, entre otros. En Rust utilizamos `Cargo`.
+
+`Cargo` posee una importante cantidad de dependencias desarrolladas por la comunidad del lenguaje. Puedes encontrar y buscar las dependencias que necesitas en [Crates.io](https://crates.io/) que es el repositorio de dependencias de Rust que Cargo usa para descargarlas.
+
+### Instalación de una dependencia
+
+Para instalar una dependencia basta con agregar manualmente el nombre seguido de la versión de la misma al archivo `Cargo.toml` debajo de la sección `[dependencies]`.
+
+```Rust
+[package]
+name = "hello-world"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1.6.0"
+```
+
+La próxima vez que realices un `cargo run`, este detectará que la dependencia no se encuentra instalada y realizará la instalación de la misma.
+Realiza la acción contraria de borrar la dependencia manualmente para que Cargo lo detecte y borre la misma de tu proyecto.
+
+### Utilización de una dependencia
+
+Para utilizar una dependencia en tu proyecto, realiza la importación de la siguiente manera:
+
+```Rust
+use regex::Regex;
+
+fn main() {
+    // ...
+}
+```
+
+Cargo genera un nuevo archivo en la raíz de tu proyecto llamado `Cargo.lock`. El mismo contiene las versiones exactas de las librerías de nuestro proyecto. Es importante versionar en Git este archivo para que todos utilicen las mismas dependencias cuando utilicen el proyecto.
+
+### Consejos sobre utilización de dependencias de terceros
+
+- Las buenas dependencias desarrolladas por la comunidad de Rust suelen tener una documentación de uso, además de estar actualizadas.
+- Antes de descargar cualquier dependencia, chequea quién la desarrolla, qué cantidad de descargar por semana posee, revisar cuándo recibió su última actualización en el repositorio oficial de la misma (normalmente en GitHub).
+- Es importante seleccionar buenas dependencias sin bugs y que no generen problemas de seguridad en tu aplicación.
+- Cargo es un poderoso gestor de dependencias, pero es más que la instalación de librerías de terceros que necesites. Tiene múltiples usos, podemos explorarlo con el comando `cargo --help` para visualizar por consola todas sus posibilidades.
