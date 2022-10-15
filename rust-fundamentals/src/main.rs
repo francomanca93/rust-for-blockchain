@@ -76,9 +76,35 @@ fn ciclo_loop(){
 
 }
 
+fn for_in_arrays_by_users_data(){
+    let mut names:Vec<String> = Vec::new();
+
+    for i in 0..3{
+        println!("Please enter a name: ");
+        let mut name = String::new();
+        std::io::stdin().read_line(&mut name).unwrap();
+        names.push(name);
+    }
+
+    //println!("{:?}", names);
+    
+    for name in names{
+        println!("{}", name)
+    }
+
+    let hello= ["H", "E", "L", "L", "O" ];
+
+    for value in 0..hello.len(){
+        println!("{}", hello[value])
+    }
+
+
+}
+
 fn main() {
     //take_data_from_user()
     //conditionals()
     //matrix_conditionals()
-    ciclo_loop()
+    //ciclo_loop()
+    for_in_arrays_by_users_data()
 }

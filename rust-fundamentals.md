@@ -20,6 +20,9 @@
     - [Consejos sobre utilización de dependencias de terceros](#consejos-sobre-utilización-de-dependencias-de-terceros)
   - [Manejo de errores en Rust - unwrap()](#manejo-de-errores-en-rust---unwrap)
   - [Realizando la calculadora cientifica](#realizando-la-calculadora-cientifica)
+- [Estructuras y funciones en Rust](#estructuras-y-funciones-en-rust)
+  - [Arrays de datos](#arrays-de-datos)
+  - [Ciclo for](#ciclo-for)
 
 # Introduccion
 
@@ -297,3 +300,62 @@ Si no implementamos `.unwrap()`, podemos obtener un **warning** por consola que 
 - Se pueden agregar mas operaciones como exponencial, agregar parentesis, etc.
 - Para el caso anterior se deberá trabajar en expresiones regulares para realizar esas acciones.
 - Se puede modularizar mas el codigo ya que hay partes que se repiten y no son buena práctica.
+
+# Estructuras y funciones en Rust
+
+- Arrays
+- Ciclo For
+- Funciones
+
+## Arrays de datos
+
+Un array de datos en en Rust es denominado Vector, para declararlo vacio y utilizarlo lo podemos hacer de la siguiente manera:
+
+```Rust
+    // Declaro array
+    let mut my_arr: Vec<String> = Vec::new();
+    
+    // Ingreso valoresa al array
+    my_arr.push("value_1");
+    my_arr.push("value_2");
+    my_arr.push("value_3");
+
+    println!{"{:?}", my_arr}
+```
+
+- Utilizo la palabra reservada `Vec` para tipar un array.
+- Declaro el tipo de dato del array con: `Vec<data_type>`.
+- Con el método `.push()` ingreso valores al array.
+- Con `mut my_array` lo puedo hacer muteble.
+- Puedo usar el metodo `.len()` para saber cuantos valores tiene mi array.
+- Uso `"{:?}"` en un `println!()` para imprimir mi array.
+- Accedo a los elementos del array como en python: `my_arr[num_element]`
+
+## Ciclo for
+
+Ciclo `for` en un rango:
+
+```Rust
+for i in 0..5{
+  // Muestro los valores de 0 a 5
+  println!{"{}", i}
+}
+```
+
+Ciclo `for` a traves de la cantidad de valores de un array:
+
+```Rust
+for i in 0..my_arr.len(){
+  // Muestro los valores de 0 a la cantidad de valores que haya en el array
+  println!{"{}", i}
+}
+```
+
+Ciclo `for` mostrando los elementos de mi array:
+
+```Rust
+for value in my_arr{
+  // Muestro los valores del array
+  println!{"{}", value}
+}
+```
