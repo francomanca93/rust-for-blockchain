@@ -23,6 +23,9 @@
 - [Estructuras y funciones en Rust](#estructuras-y-funciones-en-rust)
   - [Arrays de datos](#arrays-de-datos)
   - [Ciclo for](#ciclo-for)
+  - [Funciones](#funciones)
+    - [Declarando y llamando a una función](#declarando-y-llamando-a-una-función)
+    - [Retorno de valores de una funcion](#retorno-de-valores-de-una-funcion)
 
 # Introduccion
 
@@ -357,5 +360,41 @@ Ciclo `for` mostrando los elementos de mi array:
 for value in my_arr{
   // Muestro los valores del array
   println!{"{}", value}
+}
+```
+
+## Funciones
+
+- Una función es **un bloque de código que realiza alguna operación**.
+- Una función puede definir opcionalmente parámetros de entrada que permiten a los llamadores pasar argumentos a la función.
+- Una función también puede devolver un valor como salida.
+
+### Declarando y llamando a una función
+
+- La declaración de funciones en Rust se realiza con la palabra reservada `fn`. 
+- La función `fn main() {}` es la principal de una aplicación y se ejecuta siempre al iniciar la misma.
+- Las funciones puede recibir **argumentos**. Debemos especificar el tipo de los argumentos.
+
+```Rust
+fn main() {
+    sumar_numeros(10, 10);          // 20
+}
+
+fn sumar_numeros(num1: i32, num2: i32) {
+    let sum: i32 = num1 + num2;
+    println!("{}", sum);
+}
+```
+
+### Retorno de valores de una funcion
+
+- Entre parentesis de la funcion definimos **los argumentos**.
+- Seguido de lo anterior con `->` especificamos el tipo de valor a retornar.
+- Utilizamos la palabra reservada `return` de devolver del valor.
+
+```Rust
+fn sumar_numeros(num1: i32, num2: i32) -> i32 {
+    let sum: i32 = num1 + num2;
+    return sum;
 }
 ```
