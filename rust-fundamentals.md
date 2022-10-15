@@ -19,6 +19,7 @@
     - [Utilización de una dependencia](#utilización-de-una-dependencia)
     - [Consejos sobre utilización de dependencias de terceros](#consejos-sobre-utilización-de-dependencias-de-terceros)
   - [Manejo de errores en Rust - unwrap()](#manejo-de-errores-en-rust---unwrap)
+  - [Realizando la calculadora cientifica](#realizando-la-calculadora-cientifica)
 
 # Introduccion
 
@@ -286,3 +287,13 @@ Cargo genera un nuevo archivo en la raíz de tu proyecto llamado `Cargo.lock`. E
 > Nota: En Rust no existe la sentencia `try/catch` para la captura de errores como en otros lenguajes.
 
 Si no implementamos `.unwrap()`, podemos obtener un **warning** por consola que nos advierte de la posibilidad del error en una operación. De esta manera, gracias a este tipo de dato que contiene el error, podemos actuar en consecuencia a partir de identificar el tipo de error. Similar a un traceback en Python.
+
+## Realizando la calculadora cientifica
+
+[Proyecto de Calculadora científica](digital-calculator/src/main.rs)
+
+- La calculadora la hice con los conocimientos basicos que tengo sobre Rust. Se puede utilizar otras funcionalidades, pero en este punto de mi aprendizaje no me se mas opciones sobre el lenguaje.
+- Se utilizo funciones para aislar en division, multiplicacion, suma y resta.
+- Se pueden agregar mas operaciones como exponencial, agregar parentesis, etc.
+- Para el caso anterior se deberá trabajar en expresiones regulares para realizar esas acciones.
+- Se puede modularizar mas el codigo ya que hay partes que se repiten y no son buena práctica.
