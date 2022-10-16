@@ -26,6 +26,8 @@
   - [Funciones](#funciones)
     - [Declarando y llamando a una función](#declarando-y-llamando-a-una-función)
     - [Retorno de valores de una funcion](#retorno-de-valores-de-una-funcion)
+- [Segundo proyecto: videojuego de texto](#segundo-proyecto-videojuego-de-texto)
+  - [Leer archivos](#leer-archivos)
 
 # Introduccion
 
@@ -398,3 +400,63 @@ fn sumar_numeros(num1: i32, num2: i32) -> i32 {
     return sum;
 }
 ```
+
+# Segundo proyecto: videojuego de texto
+
+- Leer archivos en Rust
+- Leer archivos .csv
+
+## Leer archivos
+
+La **manipulación de archivos** es importarte en cualquier lenguaje de programación, como JSON, CSV, TXT, etc. 
+
+Acceder a archivos:
+
+- Para leer archivos en Rust debemos importar `fs` desde `std`.
+- `std` permite acceder al sistema operativo y realizar diversas funcionalidades.
+- Podemos definir la ubicación del archivo con una constante `const`, el nombre debe ir siempre en **mayusculas**.
+- Con `fs::read_to_string` podemos leer un archivo en la raíz del proyecto.
+- Siempre es necesario la utilización de `unwrap()` para capturar errores, ya que el archivo podría no existir.
+
+```Rust
+use std::{fs};
+
+const FILENAME: &str = "my_file.csv";
+
+fn main() {
+    let content: String = fs::read_to_string(FILENAME).unwrap();
+    println!("{}", content);
+}
+```
+
+El archivo leido se lo considera como string usando la libreria `std::fs`, para manipular exclusivamente csv deberemos instalar una dependencia en `Cargo.toml`:
+
+```Rust
+[dependencies]
+csv = "1.1.6"
+```
+
+- De la libreria `csv` usamos `ReaderBuilder`
+- `ReaderBuilder` permite leer el contenido capturado previamente con `fs`, indicando el tipo de delimitador y el tipo de dato como binario. Convertimos el `String` en un `Vector` que contiene el contenido de nuestro archivo.
+- Recorremos el contenido de nuestro archivo con un bucle for.
+- Devuelve el vector de registros con `records()`
+- Accedemos a la columna del CSV que necesitemos con `get(1)` en cada iteración.
+- Siempre debemos asegurarnos de utilizar `unwrap()` para contener los errores.
+
+```Rust
+use csv::{ReaderBuilder};
+use std::{fs};
+const FILENAME: &str = "my_file.csv";
+
+fn main() {
+    let content: String = fs::read_to_string(FILENAME).unwrap();
+    let mut rdr = ReaderBuilder::new().delimiter(b';').from_reader(content.as_bytes());
+    for result in rdr.records() {
+      println!("{}", result.unwrap().get(0).unwrap().trim());
+    }
+}
+```
+
+Podemos leer otros tipos, solo debemos explorarlos:
+- [json](https://crates.io/crates/json)
+- [Excel](https://crates.io/crates/simple_excel_writer)
