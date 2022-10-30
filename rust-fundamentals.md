@@ -31,6 +31,8 @@
   - [Valores por defecto en los errores](#valores-por-defecto-en-los-errores)
   - [Estructura de datos e implementación de las mismas](#estructura-de-datos-e-implementación-de-las-mismas)
   - [Almacenamiento clave/valor o **HashMap**](#almacenamiento-clavevalor-o-hashmap)
+  - [Accediendo al índice de un vector](#accediendo-al-índice-de-un-vector)
+  - [Option, Some y None](#option-some-y-none)
 
 # Introduccion
 
@@ -557,3 +559,65 @@ use std::collections::{HashMap};
 //...
 
 ```
+## Accediendo al índice de un vector
+
+Al recorrer un array con un `for`, resulta util a veces saber en que indice de la iteración nos encontramos. Esto lo hacemos con `.iter().enumerate()` y con ello podremos obtener el **index** como primer valor de un ciclo for, y el valor en cuestión en el segundo parámetro.
+
+```Rust
+
+//fn mai...
+
+  let muy my_arr: Vec<String> = Vec::new();
+
+  my_arr.push("1er valor".to_string());
+  //my_arr.push("N valor".to_string());
+  //my_arr.push(...
+
+  for (index, word) in my_arr.iter().enumerate(){
+    println!("{} {}", index, word);
+  }
+//...
+```
+
+## Option, Some y None
+
+Estas tres palabras reservadas se utilizan mucho en Rust, si comprendemos bien su funcionamiento podemos sacarle el maximo jugo a Rust.
+
+- `Option<T>` puede devolver:
+  - `Some`, el cual es un valor determinado.
+  - `None`, este es distinto a null. En Rust el valor nulo no existe.
+
+Ejemplo: la función `dividir_numeros()` evaluará el denominador y, si este es cero, retornara un `None`, de lo contrario, devolverá el resultado de la división creando una variable `Some` que se devuelve luego de la operación.
+
+```Rust
+
+fn dividir_numeros(numerador: i128, denominador: i128) -> Option<i128> {
+    if denominador == 0 {
+        None
+    } else {
+        Some(numerador / denominador)
+    }
+}
+
+```
+
+Una forma de validar un `Option`, ya sea `Some` o `None` es usar la palabra reservada `Match`:
+
+```Rust
+
+fn main() {
+    let result = dividir_numeros(10, 2);
+
+    match result {
+        Some(value) => { println!("El resultado es: {}", value) },
+        None => { println!("No puedes dividir por cero"); },
+    }
+}
+
+```
+
+> Nota: Algunos caracteres caracteristicos de Rust vienen de C++ como:
+
+> - `&`: pasajes por valor
+> - `*`: referencia
+
