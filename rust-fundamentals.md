@@ -28,6 +28,9 @@
     - [Retorno de valores de una funcion](#retorno-de-valores-de-una-funcion)
 - [Segundo proyecto: videojuego de texto](#segundo-proyecto-videojuego-de-texto)
   - [Leer archivos](#leer-archivos)
+  - [Valores por defecto en los errores](#valores-por-defecto-en-los-errores)
+  - [Estructura de datos e implementación de las mismas](#estructura-de-datos-e-implementación-de-las-mismas)
+  - [Almacenamiento clave/valor o **HashMap**](#almacenamiento-clavevalor-o-hashmap)
 
 # Introduccion
 
@@ -403,8 +406,10 @@ fn sumar_numeros(num1: i32, num2: i32) -> i32 {
 
 # Segundo proyecto: videojuego de texto
 
-- Leer archivos en Rust
-- Leer archivos .csv
+- Leer archivos en Rust (.csv, .json, ...)
+- Valores por defecto ante un error.
+- Estructura de datos e implementacion de las mismas
+- Almacenamiento clave/valor o **HashMap**
 
 ## Leer archivos
 
@@ -460,3 +465,95 @@ fn main() {
 Podemos leer otros tipos, solo debemos explorarlos:
 - [json](https://crates.io/crates/json)
 - [Excel](https://crates.io/crates/simple_excel_writer)
+
+## Valores por defecto en los errores
+
+Para evitar que nuestra aplicación se detenga por un error y que continúe ejecutándose, podemos colocar un valor por defecto utilizando `unwrap_or()`.
+
+```Rust
+let mut age: String = String::new();
+std::io::stdin().read_line(&mut age).unwrap();
+let age_int: u8 = age.trim().parse().unwrap_or(18);
+```
+
+Si el usuario ingresa una letra en lugar de un número cuando se le solicita su edad, la conversión del tipo de dato fallará, pero el `unwrap_or()` devolverá un valor establecido por defecto y la aplicación continuará operando.
+
+## Estructura de datos e implementación de las mismas
+
+Las estructuras de datos sirven para almacenar atributos pertenecientes a un misma objeto, todos dentro de una misma variable que los englobe, como si de una clase se tratase.
+
+Con la palabra clave **struct**, declaras las propiedades de tu estructura y puedes crear una variable que almacene estos datos y acceder a ellos mediante un punto “.”.
+
+Puedes crear estructuras que tendrán la forma de tus datos de la siguiente manera:
+
+```Rust
+struct Person {
+    first_name: String,
+    last_name: String,
+    age: i32,
+    country: String,
+}
+
+fn main() {
+    let person = Person {
+        first_name: "Peter".to_string(),
+        last_name: "Parker".to_string(),
+        age: 16,
+        country: "EEUU".to_string(),
+    };
+
+    println!("{}", person.first_name);
+    println!("{}", person.last_name);
+    println!("{}", person.age);
+    println!("{}", person.country);
+}
+```
+
+> NOTA: Las estructuras utilizan CamelCase para nombrar a las mismas a diferencia de las variables o funciones que utilizan snake_case.
+
+Ademas una estructura se puede extender e implementar funciones para realizar operaciones lógicas.
+
+Utilizamos la palabra reservada `impl`, la función `new_person` creará un objeto `Person` pasándole como parámetro los datos que necesita y devolviendo el mismo para su posterior utilización.
+Hacemos el llamado a estas funciones implementadas en una estructura con `Person:: function_that_implement_the_object()`.
+
+```Rust
+
+implt Person{
+  fn new_person(first_name: String,
+                last_name: String,
+                age: i32,
+                country: String) -> Person {
+    return Person{first_name, last_name, age, country};
+  }
+}
+
+fn main(){
+  let person: Person = Person::new_person(first_name: "Peter".to_string(),
+                                          last_name: "Parker".to_string(),
+                                          age: 16,
+                                          country: "EEUU".to_string())
+  println!("{}", persona.first_name);
+}
+```
+
+## Almacenamiento clave/valor o **HashMap**
+
+Otra manera de almacenar información, además de las estructuras y los vectores, son los denominados **HashMap**.
+
+Los mismos son **“diccionarios”** de datos, del tipo **clave/valor**, donde para acceder a un elemento, en lugar de utilizar el índice del mismo como en un vector, se utiliza la **Clave**, que puede ser un string o un número, para colocarle un nombre al **Valor** y obtenerlo.
+
+Podemos guardar un nuevo valor con `insert()` y acceder al mismo a través de su **clave**.
+
+
+```Rust
+use std::collections::{HashMap};
+
+//fn ma...
+  let mut dictonary: HashMap<&str, &str> = HashMap::new();
+  dictionary.inser("SuperHero1", "Spider Man");
+  dictionary.inser("SuperHero2", "Hulk");
+  dictionary.inser("SuperHero3", "Iron Man");
+
+//...
+
+```
